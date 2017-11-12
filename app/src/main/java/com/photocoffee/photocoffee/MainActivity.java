@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox toppingChocolateCheckBox; // View checkbox Chocolate
     CheckBox toppingIceCreamCheckBox; // View checkbox Ice Cream
     TextView quantityTextView; // View jumlah pesanan
-    TextView totalHargaTextView;
+    TextView totalHargaTextView; // View total harga pesanan
 
     /**
      * Fungsi ini akan dipanggil saat aplikasi dibuka
@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Mencari View untuk digunakan dalam program kita
          */
-        customerNameEditText = findViewById(R.id.customer_name);
-        toppingWhippedCreamCheckBox = findViewById(R.id.topping_whippedcream);
-        toppingChocolateCheckBox = findViewById(R.id.topping_chocolate);
-        toppingIceCreamCheckBox = findViewById(R.id.topping_icecream);
-        quantityTextView = findViewById(R.id.quantity_number);
-        totalHargaTextView = findViewById(R.id.total_harga);
+        customerNameEditText = (EditText)findViewById(R.id.customer_name);
+        toppingWhippedCreamCheckBox = (CheckBox)findViewById(R.id.topping_whippedcream);
+        toppingChocolateCheckBox = (CheckBox)findViewById(R.id.topping_chocolate);
+        toppingIceCreamCheckBox = (CheckBox)findViewById(R.id.topping_icecream);
+        quantityTextView = (TextView)findViewById(R.id.quantity_number);
+        totalHargaTextView = (TextView)findViewById(R.id.total_harga);
     }
 
     public void hitungTotalHarga() {
