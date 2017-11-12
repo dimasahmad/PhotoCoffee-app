@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         totalHarga = orderQuantity * harga;
+
+        totalHargaTextView.setText("Harga: Rp" + totalHarga);
     }
 
     /**
