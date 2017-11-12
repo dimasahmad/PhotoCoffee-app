@@ -51,20 +51,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hitungTotalHarga() {
-        harga = 20000;
+        harga = 20000; // Harga kopi
         if(toppingWhippedCreamCheckBox.isChecked()){
-            harga += 10000;
+            harga += 10000; // Harga topping Whipped Cream
         }
         if(toppingChocolateCheckBox.isChecked()){
-            harga += 5000;
+            harga += 5000; // Harga topping Chocolate
         }
         if(toppingIceCreamCheckBox.isChecked()){
-            harga += 15000;
+            harga += 15000; // Harga topping Ice Cream
         }
 
-        totalHarga = orderQuantity * harga;
+        totalHarga = orderQuantity * harga; // Kalikan jumlah pesanan dengan harga kopi
 
-        totalHargaTextView.setText("Harga: Rp" + totalHarga);
+        totalHargaTextView.setText("Harga: Rp" + totalHarga); // Tampilkan harga di View
     }
 
     /**
@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void orderSend(View view) {
+        hitungTotalHarga(); // Hitung total harga sebelum dikirim
+
         customerName = customerNameEditText.getText().toString(); // .toString berfungsi merubah Objek EditText menjadi String
 
         isToppingWhippedCream = toppingWhippedCreamCheckBox.isChecked(); // Set variable berdasarkan status checkbox di View
