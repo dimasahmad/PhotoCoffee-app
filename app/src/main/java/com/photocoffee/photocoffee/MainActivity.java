@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 message += "\n- Ice Cream";
             }
         } else { // Tidak menggunakan topping
-            message += "Topping: Tidak ada";
+            message += "\nTopping: Tidak ada";
         }
 
         message += "\nQty: " + orderQuantity;
