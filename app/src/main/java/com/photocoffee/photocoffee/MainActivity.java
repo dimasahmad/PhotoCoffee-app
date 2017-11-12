@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     boolean isToppingIceCream; // Topping Ice Cream
 
     int orderQuantity = 0; // Jumlah pesanan
+    int harga = 0;
+    int totalHarga = 0;
     String message; // Pesan yang akan dikirim di Email
 
     EditText customerNameEditText; // View nama pelanggan
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox toppingChocolateCheckBox; // View checkbox Chocolate
     CheckBox toppingIceCreamCheckBox; // View checkbox Ice Cream
     TextView quantityTextView; // View jumlah pesanan
+    TextView totalHargaTextView;
 
     /**
      * Fungsi ini akan dipanggil saat aplikasi dibuka
@@ -44,6 +47,22 @@ public class MainActivity extends AppCompatActivity {
         toppingChocolateCheckBox = findViewById(R.id.topping_chocolate);
         toppingIceCreamCheckBox = findViewById(R.id.topping_icecream);
         quantityTextView = findViewById(R.id.quantity_number);
+        totalHargaTextView = findViewById(R.id.total_harga);
+    }
+
+    public void hitungTotalHarga() {
+        harga = 20000;
+        if(toppingWhippedCreamCheckBox.isChecked()){
+            harga += 10000;
+        }
+        if(toppingChocolateCheckBox.isChecked()){
+            harga += 5000;
+        }
+        if(toppingIceCreamCheckBox.isChecked()){
+            harga += 15000;
+        }
+
+        totalHarga = orderQuantity * harga;
     }
 
     /**
@@ -57,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
          * - "" + berfungsi untuk menconvert int menjadi String
          */
         quantityTextView.setText("" + orderQuantity);
+
+        hitungTotalHarga(); // Hitung totalHarga saat tombol "-" ditekan
     }
 
     /**
@@ -70,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
          * - "" + berfungsi untuk menconvert int menjadi String
          */
         quantityTextView.setText("" + orderQuantity);
+
+        hitungTotalHarga(); // Hitung totalHarga saat tombol "+" ditekan
     }
 
     public void orderSend(View view) {
@@ -82,18 +105,28 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Rancang isi email yang akan dikirim di sini
          */
-        message = customerName;
-        message += "\nTopping:";
-        if(isToppingWhippedCream) { // Cek apakah menggunakan Whipped Cream
-            message += "\n- Whipped Cream";
+        message = "Photo Coffee pesanan untuk " + customerName;
+        message += "\n\nNama: " + customerName;
+
+        if(isToppingWhippedCream || isToppingChocolate || isToppingIceCream) { // Cek apakah menggunakan topping
+            message += "\nTopping:";
+            if(isToppingWhippedCream) { // Cek apakah menggunakan Whipped Cream
+                message += "\n- Whipped Cream";
+            }
+            if(isToppingChocolate) { // Cek apakah menggunakan Chocolate
+                message += "\n- Chocolate";
+            }
+            if(isToppingIceCream) { // Cek apakah menggunakan Ice Cream
+                message += "\n- Ice Cream";
+            }
+        } else { // Tidak menggunakan topping
+            message += "Topping: Tidak ada";
         }
-        if(isToppingChocolate) { // Cek apakah menggunakan Chocolate
-            message += "\n- Chocolate";
-        }
-        if(isToppingIceCream) { // Cek apakah menggunakan Ice Cream
-            message += "\n- Ice Cream";
-        }
+
         message += "\nQty: " + orderQuantity;
+        message += "\nTotal: Rp" + totalHarga;
+        message += "\n\nTerima Kasih!";
+
 
         /**
          * Kirim pesanan ke aplikasi EMail menggunakan Intent
